@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/watchlist', (req, res, next) => {
-  res.send([{name: 'Iron man'}, {name: 'Thor'}]);
+  res.send([{name: 'Iron man'}, {name: 'Thor'}, {name: 'Spiderman Homecoming'}]);
   next();
 });
 

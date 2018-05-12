@@ -11,15 +11,15 @@ export default {
   name: 'watchlist',
   data() {
     return {
-      watchlist: [
-        {
-          name: 'Iron man',
-        },
-        {
-          name: 'Thor',
-        },
-      ],
+      watchlist: [],
     };
+  },
+  created() {
+    fetch('http://localhost:8081/watchlist')
+      .then(response => response.json())
+      .then(watchlist => {
+        this.watchlist = watchlist;
+      });
   },
 };
 </script>
