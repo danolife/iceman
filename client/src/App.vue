@@ -6,16 +6,18 @@
       <router-link to="/watchlist">Watchlist</router-link>
     </div>
     <search-bar/>
+    <search-results/>
     <router-view/>
   </div>
 </template>
 
 <script>
 import SearchBar from './components/search-bar';
+import SearchResults from './components/search-results';
 
 export default {
   name: 'App',
-  components: { SearchBar },
+  components: { SearchBar, SearchResults },
 };
 </script>
 

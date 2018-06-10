@@ -9,12 +9,13 @@
 </template>
 
 <script>
+import store from '../store';
+
 export default {
   name: 'search-bar',
   data() {
     return {
       query: '',
-      results: [],
       delayedSearchTimeoutId: null,
     };
   },
@@ -25,7 +26,7 @@ export default {
         fetch(`http://localhost:8081/search?query=${this.query}`)
           .then(response => response.json())
           .then(results => {
-            this.results = results;
+            store.commit('setSearchResults', results);
           })
           .catch(error => console.error(error));
       }, 300);
