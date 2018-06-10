@@ -15,16 +15,20 @@ export default {
     return {
       query: '',
       results: [],
+      delayedSearchTimeoutId: null,
     };
   },
   methods: {
     search() {
-      fetch(`http://localhost:8081/search?query=${this.query}`)
-        .then(response => response.json())
-        .then(results => {
-          this.results = results;
-        })
-        .catch(error => console.error(error));
+      clearTimeout(this.delayedSearchTimeoutId);
+      this.delayedSearchTimeoutId = setTimeout(() => {
+        fetch(`http://localhost:8081/search?query=${this.query}`)
+          .then(response => response.json())
+          .then(results => {
+            this.results = results;
+          })
+          .catch(error => console.error(error));
+      }, 300);
     },
   },
 };
