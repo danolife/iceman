@@ -1,35 +1,69 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div class="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/watchlist">Watchlist</router-link>
+    <div class="topbar">
+      <div class="topbar__link"><router-link to="/">Home</router-link></div>
+      <div class="topbar__link"><router-link to="/watchlist">Watchlist</router-link></div>
+      <div class="topbar__spacer"></div>
+      <search-bar/>
     </div>
-    <search-bar/>
-    <search-results/>
-    <router-view/>
+    <div class="content">
+      <search-results v-if="shouldDisplayResults"/>
+      <router-view v-else/>
+    </div>
   </div>
 </template>
 
 <script>
 import SearchBar from './components/search-bar';
 import SearchResults from './components/search-results';
+import store from './store';
 
 export default {
   name: 'App',
   components: { SearchBar, SearchResults },
+  computed: {
+    shouldDisplayResults() {
+      return store.getters.shouldDisplayResults;
+    },
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
 
 #app {
   font-family: 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100vh;
+}
+
+.topbar {
+  flex-shrink: 0;
+  flex-grow: 0;
+  background-color: #BBFFFF;
+  height: 48px;
+  padding: 8px;
+  display: flex;
+  &__link {
+    padding: 0 8px;
+    height: 48px;
+    line-height: 48px;
+  }
+  &__spacer {
+    flex-grow: 1;
+  }
+}
+.content {
+  flex-grow: 1;
+  padding: 32px;
 }
 </style>

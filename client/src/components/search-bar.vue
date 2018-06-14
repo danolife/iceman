@@ -2,7 +2,6 @@
   <div class="search-bar">
     <input type="text"
            placeholder="Search"
-           v-model="query"
            @input="search"
     />
   </div>
@@ -15,15 +14,15 @@ export default {
   name: 'search-bar',
   data() {
     return {
-      query: '',
       delayedSearchTimeoutId: null,
     };
   },
   methods: {
-    search() {
+    search(event) {
+      store.commit('setSearchQuery', event.target.value);
       clearTimeout(this.delayedSearchTimeoutId);
       this.delayedSearchTimeoutId = setTimeout(() => {
-        fetch(`http://localhost:8081/search?query=${this.query}`)
+        fetch(`http://localhost:8081/search?query=${store.state.searchQuery}`)
           .then(response => response.json())
           .then(results => {
             store.commit('setSearchResults', results);
@@ -45,6 +44,7 @@ export default {
       outline: none;
       font-size: 22px;
       width: 400px;
+      z-index: 2;
     }
   }
 </style>

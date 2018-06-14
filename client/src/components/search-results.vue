@@ -1,7 +1,7 @@
 <template>
   <div class="search-results">
-    Results:
-    <ul>
+    <div>Search results:</div>
+    <ul v-if="results">
       <li v-for="movie in results" :key="movie.id">
         {{ movie.original_title }}
       </li>
@@ -15,6 +15,9 @@ import store from '../store';
 export default {
   name: 'search-results',
   computed: {
+    searchQuery() {
+      return store.state.searchQuery;
+    },
     results() {
       if (store.state.searchResults) {
         return store.state.searchResults.results;
