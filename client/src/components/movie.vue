@@ -12,7 +12,6 @@ export default {
   name: 'movie',
   props: {
     id: {
-      type: String,
       required: true,
     },
   },

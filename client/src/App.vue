@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <div class="topbar">
-      <div class="topbar__link"><router-link to="/">Home</router-link></div>
-      <div class="topbar__link"><router-link to="/watchlist">Watchlist</router-link></div>
+      <div class="topbar__link">
+        <router-link :to="{ name: 'home' }">Home</router-link>
+      </div>
+      <div class="topbar__link">
+        <router-link :to="{ name: 'watchlist' }">Watchlist</router-link>
+      </div>
       <div class="topbar__spacer"></div>
       <search-bar/>
     </div>
