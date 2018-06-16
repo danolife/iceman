@@ -15,6 +15,10 @@ const store = new Vuex.Store({
     setSearchResults(state, searchResults) {
       state.searchResults = searchResults;
     },
+    clearSearch(state) {
+      state.searchQuery = '';
+      state.searchResults = {};
+    },
   },
 });
 

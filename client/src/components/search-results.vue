@@ -27,6 +27,9 @@ export default {
       return [];
     },
   },
+  destroyed() {
+    store.commit('clearSearch');
+  }
 };
 </script>
 
