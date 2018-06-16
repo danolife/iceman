@@ -8,11 +8,6 @@ const store = new Vuex.Store({
     searchQuery: '',
     searchResults: {},
   },
-  getters: {
-    shouldDisplayResults(state) {
-      return state.searchQuery !== '';
-    },
-  },
   mutations: {
     setSearchQuery(state, searchQuery) {
       state.searchQuery = searchQuery;

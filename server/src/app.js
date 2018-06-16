@@ -17,5 +17,11 @@ app.get('/search', async (req, res, next) => {
   res.send(results);
   next();
 });
+app.get('/movie/:id', async (req, res, next) => {
+  const movieId = req.params.id;
+  const results = await tmdb.getMovie(movieId);
+  res.send(results);
+  next();
+});
 
 app.listen(process.env.PORT || 8081);

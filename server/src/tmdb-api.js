@@ -17,6 +17,14 @@ const api = {
     return fetch(url)
       .then(response => response.json());
   },
+  async getMovie(movieId) {
+    const url = this.createUrl(`/movie/${movieId}`, {
+      api_key: apiKey,
+    });
+
+    return fetch(url)
+      .then(response => response.json());
+  },
 };
 
 export default api;

@@ -7,25 +7,17 @@
       <search-bar/>
     </div>
     <div class="content">
-      <search-results v-if="shouldDisplayResults"/>
-      <router-view v-else/>
+      <router-view/>
     </div>
   </div>
 </template>
 
 <script>
 import SearchBar from './components/search-bar';
-import SearchResults from './components/search-results';
-import store from './store';
 
 export default {
   name: 'App',
-  components: { SearchBar, SearchResults },
-  computed: {
-    shouldDisplayResults() {
-      return store.getters.shouldDisplayResults;
-    },
-  },
+  components: { SearchBar },
 };
 </script>
 

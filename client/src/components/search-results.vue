@@ -3,7 +3,7 @@
     <div>Search results:</div>
     <ul v-if="results">
       <li v-for="movie in results" :key="movie.id">
-        {{ movie.original_title }}
+        <router-link :to="`/movie/${movie.id}`">{{ movie.original_title }}</router-link>
       </li>
     </ul>
   </div>

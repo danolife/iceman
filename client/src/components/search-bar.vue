@@ -3,6 +3,7 @@
     <input type="text"
            placeholder="Search"
            @input="search"
+           :value="searchQuery"
     />
   </div>
 </template>
@@ -12,6 +13,11 @@ import store from '../store';
 
 export default {
   name: 'search-bar',
+  computed: {
+    searchQuery() {
+      return store.state.searchQuery;
+    },
+  },
   data() {
     return {
       delayedSearchTimeoutId: null,
@@ -19,7 +25,13 @@ export default {
   },
   methods: {
     search(event) {
-      store.commit('setSearchQuery', event.target.value);
+      const query = event.target.value;
+      if (query !== '') {
+        this.$router.push({ name: 'search' });
+      } else {
+        this.$router.push({ name: 'home' });
+      }
+      store.commit('setSearchQuery', query);
       clearTimeout(this.delayedSearchTimeoutId);
       this.delayedSearchTimeoutId = setTimeout(() => {
         fetch(`http://localhost:8081/search?query=${store.state.searchQuery}`)
